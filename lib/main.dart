@@ -27,7 +27,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String key = "30d288037340bc186f3c77d4ad7d435a";
   bool isLoading = false;
-  String city = "Tashkent";
+  String city = "utica";
   int temp = 0;
   String sky = "";
 
@@ -51,6 +51,30 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: isLoading
+            ? CircularProgressIndicator.adaptive()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    city,
+                    style: TextStyle(fontSize: 40),
+                  ),
+                  Text(
+                    "$temp",
+                    style: TextStyle(fontSize: 50),
+                  ),
+                  Text(
+                    sky,
+                    style: TextStyle(
+                      fontSize: 40,
+                    ),
+                  ),
+                ],
+              ),
+      ),
+    );
   }
 }
