@@ -1,9 +1,10 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather/weather.dart';
 
 void main() {
-  runApp(WeatherApp());
+  runApp(DevicePreview(builder: (_) => WeatherApp()));
 }
 
 class WeatherApp extends StatelessWidget {
@@ -28,7 +29,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String key = "30d288037340bc186f3c77d4ad7d435a";
   bool isLoading = false;
-  String city = "utica";
+  String city = "Paris"; // utica, moscow, paris
   int temp = 0;
   String sky = "";
 
@@ -48,6 +49,20 @@ class _HomePageState extends State<HomePage> {
     temp = weather.temperature?.celsius?.toInt() ?? temp;
     sky = weather.weatherMain ?? sky;
     setState(() {});
+  }
+
+  String getImage() {
+    if (sky == "Snow") {
+      return "assets/snow.png";
+    } else if (sky == "Rain") {
+      return "assets/rain.png";
+    } else if (sky == "Clear") {
+      return "assets/sunny.png";
+    } else if (sky == "Wind") {
+      return "assets/wind.png";
+    } else {
+      return "assets/cloud.png";
+    }
   }
 
   @override
@@ -79,6 +94,8 @@ class _HomePageState extends State<HomePage> {
                       height: 1,
                     ),
                   ),
+                  SizedBox(height: 40),
+                  Image.asset(getImage()),
                   Text(
                     "$temp",
                     style: GoogleFonts.manrope(
