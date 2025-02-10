@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:weather/weather.dart';
 
 void main() {
@@ -52,29 +53,51 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: isLoading
-            ? CircularProgressIndicator.adaptive()
-            : Column(
+      backgroundColor: Colors.white,
+      body: isLoading
+          ? Center(child: CircularProgressIndicator.adaptive())
+          : Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    "February 10, 2025",
+                    style: GoogleFonts.manrope(
+                      color: Color(0xff6B7280),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
                     city,
-                    style: TextStyle(fontSize: 40),
+                    style: GoogleFonts.manrope(
+                      color: Color(0xff111827),
+                      fontSize: 48,
+                      fontWeight: FontWeight.w900,
+                      height: 1,
+                    ),
                   ),
                   Text(
                     "$temp",
-                    style: TextStyle(fontSize: 50),
+                    style: GoogleFonts.manrope(
+                      fontSize: 140,
+                      color: Color(0xff111827),
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                   Text(
                     sky,
-                    style: TextStyle(
-                      fontSize: 40,
+                    style: GoogleFonts.manrope(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xffFF8E27),
                     ),
                   ),
                 ],
               ),
-      ),
+            ),
     );
   }
 }
